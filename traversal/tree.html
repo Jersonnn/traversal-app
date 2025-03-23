@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .tree-node {
+            transition: all 0.3s ease;
+        }
+        .tree-node.highlight {
+            background-color: #9F7AEA;
+            color: white;
+        }
+        .connector {
+            background-color: #9F7AEA;
+            position: absolute;
+            transform-origin: top;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center">
+                <a href="index.html" class="text-purple-600 hover:text-purple-700 flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span>Back</span>
+                </a>
+                <h1 class="text-2xl font-semibold text-center flex-1">Tree Visualization</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tree Container -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Error Message (hidden by default) -->
+        <div id="error-message" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded">
+            <p class="font-medium">No tree data found! Please go back and generate a tree first.</p>
+        </div>
+
+        <!-- Tree Visualization -->
+        <div id="tree-container" class="bg-white rounded-lg shadow-xl p-8 mb-8 min-h-[400px] relative">
+            <!-- Tree will be rendered here -->
+        </div>
+
+        <!-- Traversal Controls -->
+        <div class="grid grid-cols-3 gap-4">
+            <button id="pre-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+                <i class="fas fa-step-forward mr-2"></i>
+                Pre-Order
+            </button>
+            <button id="in-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+                <i class="fas fa-exchange-alt mr-2"></i>
+                In-Order
+            </button>
+            <button id="post-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+                <i class="fas fa-step-backward mr-2"></i>
+                Post-Order
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
