@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tree Visualization</title>
+    <title>Tree Visualization - Tree Traversal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,58 +15,69 @@
             transition: all 0.3s ease;
         }
         .tree-node.highlight {
-            background-color: #9F7AEA;
-            color: white;
+            background-color: #9f7aea !important;
+            color: white !important;
+            transform: scale(1.1);
+        }
+        .tree-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tree-level {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            width: 100%;
         }
         .connector {
-            background-color: #9F7AEA;
             position: absolute;
-            transform-origin: top;
+            background-color: #cbd5e0;
+            z-index: -1;
         }
     </style>
 </head>
 <body class="min-h-screen bg-gray-100">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center">
-                <a href="index.html" class="text-purple-600 hover:text-purple-700 flex items-center">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    <span>Back</span>
-                </a>
-                <h1 class="text-2xl font-semibold text-center flex-1">Tree Visualization</h1>
-            </div>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-purple-600 hover:text-purple-700 transition">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back
+            </a>
+            <h1 class="text-xl font-semibold text-gray-800">Tree Visualization</h1>
+            <div class="w-8"></div> <!-- Spacer for alignment -->
         </div>
     </header>
 
-    <!-- Tree Container -->
-    <div class="container mx-auto px-4 py-8">
-        <!-- Error Message (hidden by default) -->
-        <div id="error-message" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded">
-            <p class="font-medium">No tree data found! Please go back and generate a tree first.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Tree Container -->
+        <div id="tree-container" class="bg-white rounded-lg shadow-xl p-4 mb-8 min-h-[400px] relative">
+            <!-- Tree will be rendered here by JavaScript -->
         </div>
 
-        <!-- Tree Visualization -->
-        <div id="tree-container" class="bg-white rounded-lg shadow-xl p-8 mb-8 min-h-[400px] relative">
-            <!-- Tree will be rendered here -->
-        </div>
-
-        <!-- Traversal Controls -->
-        <div class="grid grid-cols-3 gap-4">
-            <button id="pre-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+        <!-- Controls -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <button id="pre-order" class="bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-step-forward mr-2"></i>
                 Pre-Order
             </button>
-            <button id="in-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+            <button id="in-order" class="bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-exchange-alt mr-2"></i>
                 In-Order
             </button>
-            <button id="post-order" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center">
+            <button id="post-order" class="bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-200 flex items-center justify-center">
                 <i class="fas fa-step-backward mr-2"></i>
                 Post-Order
             </button>
         </div>
-    </div>
+
+        <!-- Error Message (hidden by default) -->
+        <div id="error-message" class="hidden mt-8 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
+            <p class="font-medium">No tree data found! Please go back and generate a tree first.</p>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
